@@ -10,7 +10,7 @@ Queries:
 
 1) Retrive the number of Draws, Wins and Loses for each team in Serie A in a specific season
 2) Find the Champion of each league in a specific season 
-2.1) -> optimized by rewriting the query: using CASE conditioning instead of UNION
+2.1) -> optimized by rewriting the query: using CASE conditioning of UNION
 3) Retrive the Players who played at least 30 games in a given season
 4) Retrive tallest players in each league in a specific season
 4.1) -> optimized creating materialized view
