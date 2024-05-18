@@ -6,5 +6,5 @@ Assignments instructions [here](https://www.diag.uniroma1.it/~rosati/dmds-2223/h
 
 **Group members**:
 
-- Mostafa Mozafari : 2047613
-- Luca Mazzucco : 1997610
+- Mostafa Mozafari: 2047613
+- Luca Mazzucco: 1997610
