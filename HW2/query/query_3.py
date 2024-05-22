@@ -46,7 +46,7 @@ pipeline = [
                   "player_api_id": "$_id.player_id",
                   "player_name": "$player.player_name",
                   "league_name": "$_id.league_name",
-                  "num_appearances": 1}     },
+                  "num_appearances": 1, }     },
 
     {"$sort": {"num_appearances": -1}},
 

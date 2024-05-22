@@ -67,6 +67,8 @@ pipeline = [
 ]
 
 
+
+
 start_time = time.time()
 
 result = list(db.matches.aggregate(pipeline))

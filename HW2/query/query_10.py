@@ -10,47 +10,44 @@ from pymongo import MongoClient
 client = MongoClient('mongodb://localhost:27017/')
 db = client['soccer_db']
 
-
-
 pipeline = [
 
-    {"$addFields": {"odds_diff": {"$abs": {"$subtract": [{"$ifNull": ["$B365H", 0]}, {"$ifNull": ["$B365A", 0]}]}}}     },
+    {"$addFields": {"b365h_num": {"$toDouble": {"$ifNull": ["$b365h", 0]}},
+                    "b365a_num": {"$toDouble": {"$ifNull": ["$b365a", 0]}}   }},
+
+    {"$addFields": {"odds_diff": {"$abs": {"$subtract": ["$b365h_num", "$b365a_num"]}}  }},
 
     {"$sort": {"odds_diff": -1}},
+
     {"$limit": 1},
 
     {"$lookup": {"from": "leagues",
                  "localField": "league_id",
                  "foreignField": "id",
-                 "as": "league_info"}   },
+                 "as": "league_info" }},
 
     {"$unwind": "$league_info"},
 
     {"$lookup": {"from": "teams",
                  "localField": "home_team_api_id",
                  "foreignField": "team_api_id",
-                 "as": "home_team_info"}    },
+                 "as": "home_team_info"     }},
 
     {"$unwind": "$home_team_info"},
-
     {"$lookup": {"from": "teams",
                  "localField": "away_team_api_id",
                  "foreignField": "team_api_id",
-                 "as": "away_team_info"}    },
+                 "as": "away_team_info"     }},
 
     {"$unwind": "$away_team_info"},
-    
+
     {"$project": {"_id": 0,
-                  "league_id": "$league_info.name",
+                  "league": "$league_info.name",
                   "season": 1,
                   "home_team": "$home_team_info.team_long_name",
                   "away_team": "$away_team_info.team_long_name",
-                  "odds_diff": "$odds_diff"}   }   ]
-
-
-
-
-
+                  "odds_diff": 1    }}
+]
 
 
 
