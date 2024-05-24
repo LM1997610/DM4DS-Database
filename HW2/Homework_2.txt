@@ -8,6 +8,9 @@ DATASET: https://www.kaggle.com/datasets/hugomathien/soccer
 
 Queries:
 
+✅  1) Retrive the number of Draws, Wins and Loses for each team in Serie A in a specific season
+
+✅  2) Find the Champion of each league in a specific season 
 
 ✅  3) Retrive the Players who played at least 30 games in a given season 
 
@@ -27,9 +30,7 @@ Queries:
 
 ✅ 11) Find the average number of goals per game for each league in each season and returns the top-3
 
-✅  x) Find the teams with the highest number of goals scored in a single season
-
-
+✅ 12) Retrieve the historical matchup data between two specific teams, including Wins for each one and goals scored
 
 
 
