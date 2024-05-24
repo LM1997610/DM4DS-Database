@@ -1,0 +1,38 @@
+
+ Group 5:  
+
+● Mostafa Mozafari: 2047613
+● Luca Mazzucco: 1997610
+
+DATASET: https://www.kaggle.com/datasets/hugomathien/soccer
+
+Queries:
+
+1) Retrive the number of Draws, Wins and Loses for each team in Serie A in a specific season
+
+2) Find the Champion of each league in a specific season 
+2.1) → optimized by rewriting the query: using CASE conditioning instead of UNION
+
+3) Retrive the Players who played at least 30 games in a given season
+
+4) Retrive tallest players in each league in a specific season
+4.1) → optimized creating materialized view
+
+5) Show average statistics for specific players 
+
+6) Find the top 10 teams who gained the most points during all seasons
+
+7) Find the top 10 teams who conceded the most goals during all seasons in away matches
+7.1) → optimized creating index on Match table
+
+8) Which league ended earlier in one specific season
+
+9) Find the 10 players who played in more teams than other
+9.1) → optimized by rewriting the query: adding DISTINCT condition
+
+10) Find the match with biggest difference in Home and Away odds
+10.1) → optimized by rewriting the query: removal of the nested query
+
+11) Find the average number of goals per game for each league in each season and returns the top-3
+
+12) Retrieve the historical matchup data between two specific teams, including Wins for each one and goals scored
