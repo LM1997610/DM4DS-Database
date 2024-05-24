@@ -24,7 +24,7 @@ Queries:
 
 ✅  8) Which league ended earlier in one specific season
 
-✅  9) Find the 10 players who played in more teams than other
+❌  9) Find the 10 players who played in more teams than other
 
 ✅ 10) Find the match with biggest difference in Home and Away odds
 
