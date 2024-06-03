@@ -6,6 +6,13 @@
 
 DATASET: https://www.kaggle.com/datasets/hugomathien/soccer
 
+All 12 queries from HW_1 have been converted, except for query number 4.
+To populate the database we converted tables from SQL into json files with the 'migration_to_json.py' script. 
+Then using the 'import_to_mongodb.sh' bash script the json files were imported to mongodb, using mongosh, to a database called 'soccer_db'. 
+This way we have a one-to-one relation between SQL tables and MongoDB collections.
+
+The python libraries needed to run queries are listed in 'requirements.txt' file.
+
 Queries:
 
 ✅  1) Retrive the number of Draws, Wins and Loses for each team in Serie A in a specific season
@@ -24,11 +31,14 @@ Queries:
 
 ✅  8) Which league ended earlier in one specific season
 
-❌  9) Find the 10 players who played in more teams than other
+✅  9) Find the 10 players who played in more teams than other
 
 ✅ 10) Find the match with biggest difference in Home and Away odds
 
 ✅ 11) Find the average number of goals per game for each league in each season and returns the top-3
+
+✅ 12) Retrieve the historical matchup data between two specific teams, including Wins for each one and goals scored
+
 
 ✅ 12) Retrieve the historical matchup data between two specific teams, including Wins for each one and goals scored
 
