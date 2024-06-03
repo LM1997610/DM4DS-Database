@@ -9,6 +9,8 @@ client = MongoClient('mongodb://localhost:27017/')
 db = client['soccer_db']
 
 
+## 3) Retrive the Players who played at least 30 games in a given season 
+
 pipeline = [
 
     {"$match": {"season": "2008/2009"}  },
@@ -20,7 +22,7 @@ pipeline = [
 
     {"$unwind": "$league"},
 
-    {"$project": {"league_name": "$league.name","players": {"$concatArrays": [
+    {"$project": {"league_name": "$league.name", "players": {"$concatArrays": [
                         ["$home_player_1", "$home_player_2", "$home_player_3", "$home_player_4", 
                         "$home_player_5", "$home_player_6", "$home_player_7", "$home_player_8", 
                         "$home_player_9", "$home_player_10", "$home_player_11", "$away_player_1", 

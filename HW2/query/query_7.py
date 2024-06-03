@@ -8,6 +8,7 @@ from pymongo import MongoClient
 client = MongoClient('mongodb://localhost:27017/')
 db = client['soccer_db']
 
+## 7) Find the top 10 teams who conceded the most goals during all seasons in away matches
 
 pipeline = [
    

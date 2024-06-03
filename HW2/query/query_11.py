@@ -9,6 +9,8 @@ from pymongo import MongoClient
 client = MongoClient('mongodb://localhost:27017/')
 db = client['soccer_db']
 
+## 11) Find the average number of goals per game for each league in each season and returns the top-3
+    
 pipeline = [
 
     {"$lookup": {"from": "matches",
@@ -30,6 +32,7 @@ pipeline = [
     {"$sort": {"avg_total_goals": -1}  },
 
     {"$limit": 3},
+    
     {"$project": {"avg_total_goals": 1,
                   "_id": 0,
                   "league_name": 1,

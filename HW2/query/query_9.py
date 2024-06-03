@@ -10,6 +10,8 @@ from pymongo import MongoClient
 client = MongoClient('mongodb://localhost:27017/')
 db = client['soccer_db']
 
+## 9) Find the 10 players who played in more teams than other
+
 def create_player_lookups(position_prefix):
 
     result = [  {"$lookup": {"from": "players",

@@ -8,9 +8,10 @@ from pymongo import MongoClient
 client = MongoClient('mongodb://localhost:27017/')
 db = client['soccer_db']
 
-team1_name = 'Real Madrid CF'
-team2_name = 'Villarreal CF'
+team1_name = 'Juventus'
+team2_name =  'Atalanta'
 
+## 12) Retrieve the historical matchup data between two specific teams, including Wins for each one and goals scored
 
 pipeline = [
 
@@ -34,29 +35,29 @@ pipeline = [
                                             'then': '$home_team.team_long_name',
                                             'else': '$away_team.team_long_name' }   },
 
-                'team2': {'$cond': {'if': {'$eq': ['$home_team.team_long_name', team1_name]},
-                                    'then': '$away_team.team_long_name',
-                                    'else': '$home_team.team_long_name' }   }   },
+                        'team2': {'$cond': {'if': {'$eq': ['$home_team.team_long_name', team1_name]},
+                                            'then': '$away_team.team_long_name',
+                                            'else': '$home_team.team_long_name' }   }   },
 
-            'num_matches': {'$sum': 1},
+                'num_matches': {'$sum': 1},
 
-            'team1_wins': {'$sum': {'$cond': [  {'$or': [
-                            {'$and': [{'$eq': ['$home_team.team_long_name', team1_name]}, {'$gt': ['$home_team_goal', '$away_team_goal']}]},
-                            {'$and': [{'$eq': ['$away_team.team_long_name', team1_name]}, {'$gt': ['$away_team_goal', '$home_team_goal']}]} ]},
-                        1,  0   ]   }   },
+                'team1_wins': {'$sum': {'$cond': [  {'$or': [
+                              {'$and': [{'$eq': ['$home_team.team_long_name', team1_name]}, {'$gt': ['$home_team_goal', '$away_team_goal']}]},
+                              {'$and': [{'$eq': ['$away_team.team_long_name', team1_name]}, {'$gt': ['$away_team_goal', '$home_team_goal']}]} ]},
+                                                1,  0   ]   }   },
 
-            'team2_wins': {'$sum': {'$cond': [{'$or': [
-                            {'$and': [{'$eq': ['$home_team.team_long_name', team2_name]}, {'$gt': ['$home_team_goal', '$away_team_goal']}]},
-                            {'$and': [{'$eq': ['$away_team.team_long_name', team2_name]}, {'$gt': ['$away_team_goal', '$home_team_goal']}]} ]},
-                        1,  0   ]   }   },
+                'team2_wins': {'$sum': {'$cond': [{'$or': [
+                              {'$and': [{'$eq': ['$home_team.team_long_name', team2_name]}, {'$gt': ['$home_team_goal', '$away_team_goal']}]},
+                              {'$and': [{'$eq': ['$away_team.team_long_name', team2_name]}, {'$gt': ['$away_team_goal', '$home_team_goal']}]} ]},
+                                                1,  0   ]   }   },
 
-            'draws': {'$sum': {'$cond': [{'$eq': ['$home_team_goal', '$away_team_goal']},   1,  0]  }   },
+                'draws': {'$sum': {'$cond': [{'$eq': ['$home_team_goal', '$away_team_goal']},   1,  0]  }   },
 
-            'team1_total_goals': {'$sum': {'$cond': [   {'$eq': ['$home_team.team_long_name', team1_name]},
+                'team1_total_goals': {'$sum': {'$cond': [{'$eq': ['$home_team.team_long_name', team1_name]},
                                                          '$home_team_goal',
                                                          '$away_team_goal'   ]   }   },
 
-            'team2_total_goals': {'$sum': {'$cond': [   {'$eq': ['$home_team.team_long_name', team2_name]},
+                'team2_total_goals': {'$sum': {'$cond': [{'$eq': ['$home_team.team_long_name', team2_name]},
                                                          '$home_team_goal',
                                                          '$away_team_goal'  ]   }   }   }   },
 
@@ -64,11 +65,11 @@ pipeline = [
                   #team1_name: '$_id.team1',
                   #team2_name: '$_id.team2',
                   'num_matches': 1,
-                  f'{team1_name[:-3]}_wins': '$team1_wins',
-                  f'{team2_name[:-3]}_wins': '$team2_wins',
+                  f'{team1_name}_wins': '$team1_wins',
+                  f'{team2_name}_wins': '$team2_wins',
                   'draws': 1,
-                  f'{team1_name[:-3]}_tot_goals': '$team1_total_goals',
-                  f'{team2_name[:-3]}_tot_goals': '$team2_total_goals'}}
+                  f'{team1_name}_tot_goals': '$team1_total_goals',
+                  f'{team2_name}_tot_goals': '$team2_total_goals'}}
 ]
 
 start_time = time.time()

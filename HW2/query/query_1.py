@@ -12,6 +12,7 @@ serie_a = db.leagues.find_one({"name": "Italy Serie A"})
 league_id = serie_a["id"]
 season = "2008/2009"
 
+## 1) Retrive the number of Draws, Wins and Loses for each team in Serie A in a specific season
 
 pipeline = [
     
