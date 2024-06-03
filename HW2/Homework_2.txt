@@ -11,7 +11,7 @@ To populate the database we converted tables from SQL into json files with the '
 Then using the 'import_to_mongodb.sh' bash script the json files were imported to mongodb, using mongosh, to a database called 'soccer_db'. 
 This way we have a one-to-one relation between SQL tables and MongoDB collections.
 
-The python libraries needed to run queries are listed in 'requirements.txt' file.
+Queries are executed with the MongoDB Python library
 
 Queries:
 
@@ -40,7 +40,6 @@ Queries:
 ✅ 12) Retrieve the historical matchup data between two specific teams, including Wins for each one and goals scored
 
 
-✅ 12) Retrieve the historical matchup data between two specific teams, including Wins for each one and goals scored
 
 
 
